@@ -39,7 +39,7 @@
 
 <div class="col-md-4">
 <p class="text-center">
-<?php $__currentLoopData = $post->references; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reference): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+<?php $__currentLoopData = $post->references(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reference): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
 <?php  $name=$reference->tag()->name  ?>
 <a href="<?php echo e(url('/search',['tag'=> $name] 	)); ?>" > #<?php echo e($name); ?> </a> 
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -47,8 +47,10 @@
 </div>
 
 <div class="col-md-4">
+	 <?php if(Auth::user()!=null && Auth::user()->administration_level>=Config::get('constants.administratorLevel')): ?>
 	<a class="btn btn-default btn-sm" href="<?php echo e(url('admin/delete/post',['id'=>$post->id])); ?>">Remove Post</a>
 	<a class="btn btn-default btn-sm" href="<?php echo e(url('admin/edit/post',['id'=>$post->id])); ?>">Edit Post</a>
+	<?php endif; ?>
 </div>
 
 <div class="col-md-4">

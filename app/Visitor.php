@@ -10,7 +10,7 @@ class Visitor extends Model
 	
 	       	protected $fillable=['username','email'];
 	
-	public function comments(){ $return->hasMany('App\Comment');}
+	public function comments(){ return $this->hasMany('App\Comment');}
 		
 }
 

@@ -43,7 +43,7 @@ class PostController extends BaseController
 	{
 		$postBuilder=Post::whereYear('created_at',$year);
 		if($month!=null)
-		$postBuilder=Post::whereMonth('created_at', $month);
+		$postBuilder=$postBuilder->whereMonth('created_at', $month);
 		
 		$hasMore=$postBuilder->count()>($chunk+1)*$size;
 		$posts=$postBuilder->orderBy('created_at','desc')->skip($chunk*$size)->take($size)->get();
@@ -82,7 +82,6 @@ class PostController extends BaseController
 		$tag=Tag::where('name',$tag)->first();
 		$posts=array();
 		$action='search';
-		
 		
 		$hasMore=Reference::where('tag_id','=',$tag->id)->count()>(($chunk+1)*$size);
 		

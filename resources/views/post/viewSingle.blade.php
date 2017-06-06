@@ -39,7 +39,7 @@
 
 <div class="col-md-4">
 <p class="text-center">
-@foreach ($post->references as $reference) 
+@foreach ($post->references() as $reference) 
 @php $name=$reference->tag()->name @endphp
 <a href="{{ url('/search',['tag'=> $name] 	) }}" > #{{ $name  }} </a> 
 @endforeach
